@@ -1,0 +1,114 @@
+body{
+    background: repeating-linear-gradient(45deg,
+        rgb(236, 240, 241) 5%,
+        rgb(239, 243, 244) 10%,
+        rgb(236, 240, 241) 5%,
+        rgb(239, 243, 244) 10%
+    );
+
+    box-shadow: inset 0 0 10px 1px #000;
+    height: 100%;
+    margin: auto;
+    font-family: Arial;
+}
+#header{
+    background-color: #2C3E50;
+    color: white;
+    font-size: 150%;
+    text-shadow: 0px 10px 30px black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0px 10px 30px black;
+}
+#lewy{
+    width: 50%;
+    float: left;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#prawy{
+    width: 50%;
+    float: right;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+img{
+    cursor: pointer;
+}
+
+
+
+input.animated{
+    height: 40px;
+    margin-top: 5px;
+    font-size: 120%;
+    background-color: #2C3E50;
+    color: white;
+    border-color: black;
+}
+img.animated, input.animated{
+    cursor: pointer;
+    transition: transform .2s;
+}
+img.animated:hover, input.animated:hover{
+    transform: scale(1.05);
+}
+
+
+
+table{
+    text-align: left;
+}
+
+#formularz_outer{
+    position: relative;
+    text-align: center;
+    background-color: #34495E;
+}
+#formularz_inner{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    border-radius: 5px;
+    border-color: #27374D;
+}
+#otoczka_outer{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    border-color: #27374D;
+    height: -1px;
+
+    border-radius: 15px;
+    background-color: #2C3E50;
+}
+#otoczka_inner{
+    background-color: #ECF0F1;
+    border-radius: 15px;
+    padding: 10px;
+}
+#raport{
+    text-align: center;
+    float: right;
+}
+#formularz{
+    display: none;
+}
+
+
+/* https://colorhunt.co/palette/27374d526d829db2bfdde6ed
