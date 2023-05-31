@@ -58,7 +58,7 @@ session_start(); // Niezbędne do działania ukrywania/wyświetlania formularzy
                 <option value="raport1">Lista klientów z danego miasta</option>
                 <option value="raport2">Lista pracowników z danego województwa</option>
                 <option value="raport3">Zamówienia do oddania w przeciągu dwóch tygodni</option>
-                <option value="raport4">Dane dotyczące miar</option>
+                <option value="raport4">Zamówienia według rodzaju pracy</option>
             </select>
         </div>
 
