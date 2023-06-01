@@ -14,6 +14,12 @@ session_start(); // Niezbędne do działania ukrywania/wyświetlania formularzy
                 border-bottom: 1px solid black;
                 border-bottom-style: dotted;
             }
+            input{
+                margin-top: 5px;
+            }
+            #formularz_outer{
+                margin-top: 20px;
+            }
         </style>
 
         <script>
@@ -58,7 +64,7 @@ session_start(); // Niezbędne do działania ukrywania/wyświetlania formularzy
                 <option value="raport1">Lista klientów z danego miasta</option>
                 <option value="raport2">Lista pracowników z danego województwa</option>
                 <option value="raport3">Zamówienia do oddania w przeciągu dwóch tygodni</option>
-                <option value="raport4">Zamówienia według rodzaju pracy</option>
+                <option value="raport4">Dane dotyczące miar</option>
             </select>
         </div>
 
