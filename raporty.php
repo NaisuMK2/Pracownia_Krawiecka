@@ -64,7 +64,9 @@ session_start(); // Niezbędne do działania ukrywania/wyświetlania formularzy
                 <option value="raport1">Lista klientów z danego miasta</option>
                 <option value="raport2">Lista pracowników z danego województwa</option>
                 <option value="raport3">Zamówienia do oddania w przeciągu dwóch tygodni</option>
-                <option value="raport4">Dane dotyczące miar</option>
+                <option value="raport4">Zamówienia według rodzaju pracy</option>
+                <option value="raport5">Zamówienia według daty</option>
+                <option value="raport6">Zamówienia według klienta</option>
             </select>
         </div>
 
@@ -231,6 +233,94 @@ session_start(); // Niezbędne do działania ukrywania/wyświetlania formularzy
             </div>
         </div>
     </div>
+
+    <div id="raport5" class="raport" style="display: none;">
+        <div id="formularz_outer">
+            <div id="otoczka_outer">
+                <div id="otoczka_inner">
+
+                    <form method="post" action="">
+                        <label for="data_od">Podaj datę od:</label><br>
+                        <input type="date" id="data_od" name="data_od"><br>
+                        <label for="data_do">Podaj datę do:</label><br>
+                        <input type="date" id="data_do" name="data_do"><br>
+                        <input type="submit" value="Szukaj">
+                    </form>
+
+                    <?php
+                    $conn = new mysqli('localhost', 'root', '', 'pracownia_krawiecka');
+                    if (!$conn) {
+                        exit("Błąd połączenia z serwerem");
+                    } else {
+                        if (isset($_POST['data_od']) && isset($_POST['data_do'])) {
+                            $data_od = $_POST['data_od'];
+                            $data_do = $_POST['data_do'];
+
+                            $query = "SELECT * FROM zamowienie WHERE data_oddania BETWEEN '$data_od' AND '$data_do'";
+                            $result = mysqli_query($conn, $query);
+
+                            echo "<table>";
+                            echo "<tr><th>ID Zamówienia</th><th>ID Klienta</th><th>ID Pracownika</th><th>Koszt</th><th>Data oddania</th></tr>";
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr><td>" . $row['id_zamowienia'] . "</td><td>" . $row['id_klienta'] . "</td><td>" . $row['id_pracownika'] . "</td><td>" . $row['Koszt'] . "</td><td>" . $row['data_oddania'] . "</td></tr>";
+                            }
+                            echo "</table>";
+                        }
+                        mysqli_close($conn);
+                    }
+                    ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="raport6" class="raport" style="display: none;">
+        <div id="formularz_outer">
+            <div id="otoczka_outer">
+                <div id="otoczka_inner">
+
+                    <form method="post" action="">
+                        <label for="imie">Podaj imię klienta:</label><br>
+                        <input type="text" id="imie" name="imie"><br>
+                        <label for="nazwisko">Podaj nazwisko klienta:</label><br>
+                        <input type="text" id="nazwisko" name="nazwisko"><br>
+                        <input type="submit" value="Szukaj">
+                    </form>
+
+                    <?php
+                    $conn = new mysqli('localhost', 'root', '', 'pracownia_krawiecka');
+                    if (!$conn) {
+                        exit("Błąd połączenia z serwerem");
+                    } else {
+                        if (isset($_POST['imie']) && isset($_POST['nazwisko'])) {
+                            $imie = $_POST['imie'];
+                            $nazwisko = $_POST['nazwisko'];
+
+                            $result = mysqli_query($conn, "SELECT zamowienie.id_zamowienia, zamowienie.id_klienta, zamowienie.id_pracownika, zamowienie.koszt, zamowienie.data_oddania
+                                FROM zamowienie
+                                JOIN klient ON zamowienie.id_klienta = klient.id_klienta
+                                WHERE klient.imie = '$imie' AND klient.nazwisko = '$nazwisko'");
+
+                            echo "<table>";
+                            echo "<tr><th>ID Zamówienia</th><th>ID Klienta</th><th>ID Pracownika</th><th>Koszt</th><th>Data oddania</th></tr>";
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo "<tr><td>" . $row['id_zamowienia'] . "</td><td>" . $row['id_klienta'] . "</td><td>" . $row['id_pracownika'] . "</td><td>" . $row['koszt'] . "</td><td>" . $row['data_oddania'] . "</td></tr>";
+                            }
+                            echo "</table>";
+
+                            mysqli_close($conn);
+                        }
+                    }
+                    ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
     </body>
